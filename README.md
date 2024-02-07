@@ -24,7 +24,7 @@ On February 4, the version of Generative Language API is v1beta. [Ref](https://a
 # Library's project key
 
 ```
-###
+1XrAybct1KUwGcFrEZ9BOd5sa0SoHeQwGhOWkDOHki9lDFAX9OHlO03y_
 ```
 
 <a name="usage"></a>
@@ -41,7 +41,7 @@ In order to use this library, please install the library as follows.
 
 2. [Install this library](https://developers.google.com/apps-script/guides/libraries).
 
-   - Library's project key is **`###`**.
+   - Library's project key is **`1XrAybct1KUwGcFrEZ9BOd5sa0SoHeQwGhOWkDOHki9lDFAX9OHlO03y_`**.
 
 ## 2. Linking Google Cloud Platform Project to Google Apps Script Project for New IDE
 

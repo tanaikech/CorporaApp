@@ -78,6 +78,7 @@ This library uses the following 2 scopes.
 | [deletePermission](#deletepermission)           | Delete permission of corpus. |
 | [getPermissions](#getpermissions)           | Get permission list of corpus. |
 | [updatePermission](#updatepermission)           | Update permission of corpus. |
+| [searchQueryWithGenerateAnswer](#searchquerywithgenerateanswer)           | Search chunks using models.generateAnswer. |
 
 In this library, the auto-completion can be used for the returned objects.
 
@@ -525,6 +526,25 @@ console.log(res.getContentText());
 }
 ```
 
+<a name="searchquerywithgenerateanswer"></a>
+
+## searchQueryWithGenerateAnswer
+
+Search chunks using models.generateAnswer. [Ref](https://ai.google.dev/api/rest/v1beta/models/generateAnswer)
+
+```javascript
+const text = "###"; // Query
+const source = "###"; // e.g. corpora/123 or corpora/123/documents/abc.
+
+const requestBody = {
+  contents: [{ parts: [{ text }], role: "user" }],
+  answerStyle: "VERBOSE",
+  semanticRetriever: { source, query: { parts: [{ text }] } }
+};
+const res = CorporaApp.searchQueryWithGenerateAnswer(requestBody);
+console.log(res.getContentText());
+```
+
 # Samples
 
 Here, I would like to introduce sample scripts using this library.
@@ -811,6 +831,10 @@ By this flow, the images on Google Drive can be searched with the semantic searc
 - v1.0.0 (February 7, 2024)
 
   1. Initial release.
+
+- v1.0.1 (February 16, 2024)
+
+  1. New method of [searchQueryWithGenerateAnswer](#searchquerywithgenerateanswer) was added.
 
 [TOP](#top)
 

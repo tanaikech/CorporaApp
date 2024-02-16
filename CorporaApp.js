@@ -201,6 +201,20 @@ function updatePermission(name, requestBody, query) {
   return new CorporaApp_().updatePermission(name, requestBody, query);
 }
 
+// --- Method: models.generateAnswer https://ai.google.dev/api/rest/v1beta/models/generateAnswer
+
+/**
+* ### Description
+* Search chunks using models.generateAnswer.
+* ref: https://ai.google.dev/api/rest/v1beta/models/generateAnswer
+*
+* @param {Object} requestBody Request body of [Method: models.generateAnswer](https://ai.google.dev/api/rest/v1beta/models/generateAnswer).
+* @returns {UrlFetchApp.HTTPResponse} HTTPResponse
+*/
+function searchQueryWithGenerateAnswer(requestBody) {
+  return new CorporaApp_().searchQueryWithGenerateAnswer(requestBody);
+}
+
 
 /**
  * 
@@ -569,6 +583,26 @@ class CorporaApp_ {
     return this.fetch_({
       url: `${this.baseUrl}${name}${qp && ("?" + qp)}`,
       method: "PATCH",
+      payload: JSON.stringify(requestBody),
+      contentType: "application/json",
+    });
+  }
+
+  /**
+  * ### Description
+  * Search chunks using models.generateAnswer.
+  * ref: https://ai.google.dev/api/rest/v1beta/models/generateAnswer
+  *
+  * @param {Object} requestBody Request body of [Method: models.generateAnswer](https://ai.google.dev/api/rest/v1beta/models/generateAnswer).
+  * @returns {UrlFetchApp.HTTPResponse} HTTPResponse
+  */
+  searchQueryWithGenerateAnswer(requestBody) {
+    if (!requestBody) {
+      throw new Error("Please set request body.");
+    }
+    return this.fetch_({
+      url: `${this.baseUrl}models/aqa:generateAnswer`,
+      method: "POST",
       payload: JSON.stringify(requestBody),
       contentType: "application/json",
     });

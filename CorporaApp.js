@@ -7,6 +7,19 @@
  */
 var appName = "CorporaApp";
 
+/**
+ * ### Description
+ * Method for using own access token. For example, you want to use the access token from the service account. Please set this.
+ * Default access token is retrieved by ScriptApp.getOAuthToken().
+ * 
+ * @param {String} accessToken Access token for using Gemini API.
+ * @return {CorporaApp}
+ */
+function setAccessToken(accessToken = "") {
+  this.accessToken = accessToken;
+  return this;
+}
+
 // --- REST Resource: corpora https://ai.google.dev/api/rest/v1beta/corpora
 
 /**
@@ -17,7 +30,7 @@ var appName = "CorporaApp";
 * @returns {UrlFetchApp.HTTPResponse} HTTPResponse
 */
 function createCorpus(requestBody) {
-  return new CorporaApp_().createCorpus(requestBody);
+  return new CorporaApp_(this.accessToken).createCorpus(requestBody);
 }
 
 /**
@@ -29,7 +42,7 @@ function createCorpus(requestBody) {
 * @returns {UrlFetchApp.HTTPResponse} HTTPResponse
 */
 function deleteCorpus(name, force = false) {
-  return new CorporaApp_().deleteCorpus(name, force);
+  return new CorporaApp_(this.accessToken).deleteCorpus(name, force);
 }
 
 /**
@@ -39,7 +52,7 @@ function deleteCorpus(name, force = false) {
 * @returns {Object[]} An array incluidng the metadata of corpora.
 */
 function getCorpora() {
-  return new CorporaApp_().getCorpora();
+  return new CorporaApp_(this.accessToken).getCorpora();
 }
 
 /**
@@ -51,7 +64,7 @@ function getCorpora() {
 * @returns {UrlFetchApp.HTTPResponse} HTTPResponse
 */
 function searchQueryFromCorpus(name, requestBody) {
-  return new CorporaApp_().searchQueryFromCorpus(name, requestBody);
+  return new CorporaApp_(this.accessToken).searchQueryFromCorpus(name, requestBody);
 }
 
 // --- REST Resource: corpora.documents https://ai.google.dev/api/rest/v1beta/corpora.documents
@@ -65,7 +78,7 @@ function searchQueryFromCorpus(name, requestBody) {
 * @returns {UrlFetchApp.HTTPResponse} HTTPResponse
 */
 function createDocument(name, requestBody) {
-  return new CorporaApp_().createDocument(name, requestBody);
+  return new CorporaApp_(this.accessToken).createDocument(name, requestBody);
 }
 
 /**
@@ -77,7 +90,7 @@ function createDocument(name, requestBody) {
 * @returns {UrlFetchApp.HTTPResponse} HTTPResponse
 */
 function deleteDocument(name, force = false) {
-  return new CorporaApp_().deleteDocument(name, force);
+  return new CorporaApp_(this.accessToken).deleteDocument(name, force);
 }
 
 /**
@@ -88,7 +101,7 @@ function deleteDocument(name, force = false) {
 * @returns {Object[]} An array incluidng the metadata of document.
 */
 function getDocuments(name) {
-  return new CorporaApp_().getDocuments(name);
+  return new CorporaApp_(this.accessToken).getDocuments(name);
 }
 
 /**
@@ -100,7 +113,7 @@ function getDocuments(name) {
 * @returns {UrlFetchApp.HTTPResponse} HTTPResponse
 */
 function searchQueryFromDocument(name, requestBody) {
-  return new CorporaApp_().searchQueryFromDocument(name, requestBody);
+  return new CorporaApp_(this.accessToken).searchQueryFromDocument(name, requestBody);
 }
 
 // --- REST Resource: corpora.documents.chunks https://ai.google.dev/api/rest/v1beta/corpora.documents.chunks
@@ -114,7 +127,7 @@ function searchQueryFromDocument(name, requestBody) {
 * @returns {UrlFetchApp.HTTPResponse[]} HTTPResponse[]
 */
 function setChunks(name, requestBody) {
-  return new CorporaApp_().setChunks(name, requestBody);
+  return new CorporaApp_(this.accessToken).setChunks(name, requestBody);
 }
 
 /**
@@ -126,7 +139,7 @@ function setChunks(name, requestBody) {
 * @returns {UrlFetchApp.HTTPResponse} HTTPResponse
 */
 function deleteChunks(name, requestBody) {
-  return new CorporaApp_().deleteChunks(name, requestBody);
+  return new CorporaApp_(this.accessToken).deleteChunks(name, requestBody);
 }
 
 /**
@@ -137,7 +150,7 @@ function deleteChunks(name, requestBody) {
 * @returns {Object[]} An array incluidng the chunks.
 */
 function getChunks(name) {
-  return new CorporaApp_().getChunks(name);
+  return new CorporaApp_(this.accessToken).getChunks(name);
 }
 
 /**
@@ -149,7 +162,7 @@ function getChunks(name) {
 * @returns {UrlFetchApp.HTTPResponse[]} HTTPResponse[]
 */
 function updateChunks(name, requestBody) {
-  return new CorporaApp_().updateChunks(name, requestBody);
+  return new CorporaApp_(this.accessToken).updateChunks(name, requestBody);
 }
 
 // --- REST Resource: corpora.permissions https://ai.google.dev/api/rest/v1beta/corpora.permissions
@@ -163,7 +176,7 @@ function updateChunks(name, requestBody) {
 * @returns {UrlFetchApp.HTTPResponse} HTTPResponse
 */
 function createPermission(name, requestBody) {
-  return new CorporaApp_().createPermission(name, requestBody);
+  return new CorporaApp_(this.accessToken).createPermission(name, requestBody);
 }
 
 /**
@@ -174,7 +187,7 @@ function createPermission(name, requestBody) {
 * @returns {UrlFetchApp.HTTPResponse} HTTPResponse
 */
 function deletePermission(name) {
-  return new CorporaApp_().deletePermission(name);
+  return new CorporaApp_(this.accessToken).deletePermission(name);
 }
 
 /**
@@ -185,7 +198,7 @@ function deletePermission(name) {
 * @returns {Object[]} An array incluidng the permissions.
 */
 function getPermissions(name) {
-  return new CorporaApp_().getPermissions(name);
+  return new CorporaApp_(this.accessToken).getPermissions(name);
 }
 
 /**
@@ -198,7 +211,7 @@ function getPermissions(name) {
 * @returns {UrlFetchApp.HTTPResponse} HTTPResponse
 */
 function updatePermission(name, requestBody, query) {
-  return new CorporaApp_().updatePermission(name, requestBody, query);
+  return new CorporaApp_(this.accessToken).updatePermission(name, requestBody, query);
 }
 
 // --- Method: models.generateAnswer https://ai.google.dev/api/rest/v1beta/models/generateAnswer
@@ -212,7 +225,7 @@ function updatePermission(name, requestBody, query) {
 * @returns {UrlFetchApp.HTTPResponse} HTTPResponse
 */
 function searchQueryWithGenerateAnswer(requestBody) {
-  return new CorporaApp_().searchQueryWithGenerateAnswer(requestBody);
+  return new CorporaApp_(this.accessToken).searchQueryWithGenerateAnswer(requestBody);
 }
 
 
@@ -222,12 +235,13 @@ function searchQueryWithGenerateAnswer(requestBody) {
 class CorporaApp_ {
 
   /**
+   * @param {String} accessToken Access token for using Gemini API.
   */
-  constructor() {
+  constructor(accessToken) {
     const apiVersion = "v1beta"; // If "v1" can be used, please modify this value.
 
     this.baseUrl = `https://generativelanguage.googleapis.com/${apiVersion}/`;
-    this.headers = { authorization: "Bearer " + ScriptApp.getOAuthToken() };
+    this.headers = { authorization: "Bearer " + (accessToken || ScriptApp.getOAuthToken()) };
   }
 
   /**

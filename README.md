@@ -62,6 +62,8 @@ This library uses the following 2 scopes.
 
 | Methods                           | Description                                                              |
 | :-------------------------------- | :----------------------------------------------------------------------- |
+| [setAccessToken](#setaccesstoken)           | Use own access token. For example, you want to use the access token from the service account. Please set this. |
+|||
 | [createCorpus](#createcorpus)           | Create a new corpus.  |
 | [deleteCorpus](#deletecorpus)           | Delete a corpus.  |
 | [getCorpora](#getcorpora)           | Get corpora list.  |
@@ -81,6 +83,25 @@ This library uses the following 2 scopes.
 | [searchQueryWithGenerateAnswer](#searchquerywithgenerateanswer)           | Search chunks using models.generateAnswer. |
 
 In this library, the auto-completion can be used for the returned objects.
+
+<a name="setaccesstoken"></a>
+
+## setAccessToken
+
+Use own access token. For example, you want to use the access token from the service account. Please set this.
+
+Default access token is retrieved by `ScriptApp.getOAuthToken()`.
+
+```javascript
+const accessToken = "###"; // Your access token
+const res = CorporaApp.setAccessToken(accessToken).getCorpora();
+console.log(res);
+```
+
+- For example, if you want to use the access token retrieved from the service account. Please include the following scopes.
+
+	- `https://www.googleapis.com/auth/generative-language.retriever`
+	- `https://www.googleapis.com/auth/script.external_request`
 
 <a name="createcorpus"></a>
 
@@ -836,5 +857,8 @@ By this flow, the images on Google Drive can be searched with the semantic searc
 
   1. New method of [searchQueryWithGenerateAnswer](#searchquerywithgenerateanswer) was added.
 
-[TOP](#top)
+- v1.0.2 (February 26, 2024)
 
+  1. New method of [setAccessToken](#setaccesstoken) was added. When this method is used, you can use the access token retrieved from the service account. Default access token is retrieved by `ScriptApp.getOAuthToken()`.
+
+[TOP](#top)

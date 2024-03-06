@@ -74,6 +74,7 @@ This library uses the following 2 scopes.
 | [searchQueryFromDocument](#searchqueryfromdocument)           | Search chunks from a document. |
 | [setChunks](#setchunks)           | Put chunks into a document. |
 | [deleteChunks](#deletechunks)           | Delete chunks from a document. |
+| [getChunk](#getchunk)           | Get a single chunk. |
 | [getChunks](#getchunks)           | Get chunk list from a document. |
 | [updateChunks](#updatechunks)           | Update chunks in a document. |
 | [createPermission](#createpermission)           | Create permission of corpus. |
@@ -374,6 +375,19 @@ console.log(res.getContentText());
 - `corpora/sample-###/documents/sample-document-###` is the resource name of document.
 - `corpora/sample-###/documents/sample-document-###/chunks/###` is the resource name of chunk.
 - In this case, no value is returned.
+
+<a name="getchunk"></a>
+
+## getChunk
+
+Get a single chunk. [Ref](https://ai.google.dev/api/rest/v1beta/corpora.documents.chunks/get)
+
+```javascript
+const res = CorporaApp.getChunk("corpora/sample-###/documents/sample-document-###/chunks/###");
+console.log(res);
+```
+
+This method returns HTTPResponse.
 
 <a name="getchunks"></a>
 
@@ -860,5 +874,9 @@ By this flow, the images on Google Drive can be searched with the semantic searc
 - v1.0.2 (February 26, 2024)
 
   1. New method of [setAccessToken](#setaccesstoken) was added. When this method is used, you can use the access token retrieved from the service account. Default access token is retrieved by `ScriptApp.getOAuthToken()`.
+
+- v1.0.3 (March 6, 2024)
+
+  1. New method of [getChunk](#getchunk) was added. When this method is used, you can retrieve a single chunk using the resource name of chunk.
 
 [TOP](#top)

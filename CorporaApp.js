@@ -144,6 +144,17 @@ function deleteChunks(name, requestBody) {
 
 /**
 * ### Description
+* Get a single chunk. [Ref](https://ai.google.dev/api/rest/v1beta/corpora.documents.chunks/get)
+*
+* @param {String} name Resource of a chunk name. Ex. corpora/my-corpus-123/documents/the-doc-abc/chunks/some-chunk
+* @returns {UrlFetchApp.HTTPResponse} HTTPResponse
+*/
+function getChunk(name) {
+  return new CorporaApp_(this.accessToken).getChunk(name);
+}
+
+/**
+* ### Description
 * Get all chunks from a document.
 *
 * @param {String} name Resource name of document. Ex. corpora/my-corpus-123/documents/the-doc-abc
@@ -458,6 +469,21 @@ class CorporaApp_ {
       payload: JSON.stringify(requestBody),
       contentType: "application/json",
     });
+  }
+
+  /**
+  * ### Description
+  * Get a single chunk. [Ref](https://ai.google.dev/api/rest/v1beta/corpora.documents.chunks/get)
+  *
+  * @param {String} name Resource of a chunk name. Ex. corpora/my-corpus-123/documents/the-doc-abc/chunks/some-chunk
+  * @returns {UrlFetchApp.HTTPResponse} HTTPResponse
+  */
+  getChunk(name) {
+    if (!name) {
+      throw new Error("Please set chunk name 'corpora/my-corpus-123/documents/the-doc-abc/chunks/some-chunk'.");
+    }
+    const url = `${this.baseUrl}${name}`;
+    return this.fetch_({ url });
   }
 
   /**
